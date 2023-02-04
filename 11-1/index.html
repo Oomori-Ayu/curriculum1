@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        th, td {
+            padding : 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <select id="select" onchange="changeLang()">
+        <option id="select">選択してください</option>
+        <option id="selected_jpn">日本語</option>
+        <option id="selected_en">English</option>
+        <option id="selected_all">全て表示</option>
+    </select>
+    <table id="table">
+        <tr>
+            <th>日本</th>
+            <td>こんにちは</td>
+            <td>ありがとう</td>
+            <td>さようなら</td>
+        </tr>
+        <tr>
+            <th>English</th>
+            <td>Hello</td>
+            <td>Thank you</td>
+            <td>Good Bye</td>
+        </tr>
+    </table>
+
+    <ul id="selected"></ul>
+
+    <script>
+        //①onchangeで使用されている関数の中身を実装してください。
+        function changeLang() {
+            //セレクトボックスで選んだ値を取得
+            const value = document.getElementById('select').value;
+            let table = document.getElementById('table');
+            var firrow = table.rows[0];
+            var secrow = table.rows[1];
+   
+            //選択値を取得
+            const id1 = document.getElementById('selected_jpn').value;
+            const id2 = document.getElementById('selected_en').value;
+            const id3 = document.getElementById('selected_all').value;
+
+
+            if(value===id1) {
+                firrow.style.display = "block";
+                secrow.style.display = "none";
+
+            }else if(value===id2){
+                secrow.style.display = "block";
+                firrow.style.display = "none";
+            }else if(value===id3){
+                firrow.style.display = "block";
+                secrow.style.display = "block";
+            }else{}
+        }
+
+
+        
+    </script>
+</body>
+</html>
