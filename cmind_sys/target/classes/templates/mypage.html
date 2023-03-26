@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<link th:href="@{/css/layout.css}" rel="stylesheet" />
+<title>マイページ確認・変更画面</title>
+</head>
+<body>
+	<!-- ヘッダー -->
+	<header th:include="layout/header :: head"></header>
+	<!-- サイドバー -->
+	<aside th:include="layout/aside :: side"></aside>
+	<!-- メイン -->
+	<article class="main">
+		<h3 class="page_title">マイページ確認・変更画面</h3>
+
+	<div class="form">
+
+		<form th:action="@{/mypage}" method="post" th:object="${updateRequestForm}">
+
+		<p style="color:red" th:if="${ErrorMessage!=null}" th:text="${ErrorMessage}">　<!--ログインエラーの際はエラーメッセージを表示する　-->
+      		  <div th:each="error : ${#fields.detailedErrors()}">
+          	  <span style="color:red" th:text="${error.message}">Error message</span>
+          	  </div>
+
+			<div class="label">社員番号</div>
+				<div class="input">
+						<input type="text" name="empId" th:value="${up_emp.empId}" />
+				</div>
+
+			<div class="label">パスワード</div>
+				<div class="input">
+						<input type="text" name="password" th:value="${up_emp.password}" />
+				</div>
+
+			<div class="label">名前</div>
+				<div class="input">
+						<input type="text" name="empName" th:value="${up_emp.empName}" />
+				</div>
+
+			<div class="label">生年月日</div>
+				<div class="input">
+						<input type="text" name="birthday" th:value="${up_emp.birthday}" />
+				</div>
+
+			<div class="label">性別</div>
+				<div class="input">
+						<input type="radio" th:field="*{gender}" value="1"/>男性
+						<input type="radio" th:field="*{gender}" value="2"/>女性<br/>
+				</div>
+
+			<div class="text-center">
+        			<input type="submit" value="　変更確定　">
+      		</div>
+		</form>
+	</div>
+	</article>
+	<!-- フッダー -->
+	<footer th:include="layout/footer :: foot"></footer>
+
+</body>
+</html>
